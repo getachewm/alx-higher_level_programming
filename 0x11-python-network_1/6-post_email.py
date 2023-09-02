@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """ A  script that takes in a URL and an email address sends a POST req to the passed URL with the email as a para displays the body of the response."""
+
 import sys
 import requests
 
