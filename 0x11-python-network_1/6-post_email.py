@@ -1,17 +1,15 @@
 #!/usr/bin/python3
-"""A script that:
-- takes in a URL,
-- sends a req to the URL
-- displays the body of the response (decoded in utf-8).
+"""
+a python script that sends a POST request to the passed URL with the
+email as a parameter, and finally displays the body of the response.
 """
 
-
 if __name__ == "__main__":
+    import requests
     import sys
-    from urllib import request, error
 
-    try:
-        with request.urlopen(sys.argv[1]) as res:
-            print(res.read().decode('UTF-8'))
-    except error.HTTPError as er:
-        print('Error code:', er.code)
+    url = sys.argv[1]
+    email = sys.argv[2]
+    data_req = requests.post(url, {"email": email})
+
+    print(data_req.text)
