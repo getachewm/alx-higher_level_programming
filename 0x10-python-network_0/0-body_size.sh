@@ -1,4 +1,4 @@
-#!bin/bash
+#!/bin/bash
 
 # Getting the bytes size of the HTTP response header fro a given URL.
 
