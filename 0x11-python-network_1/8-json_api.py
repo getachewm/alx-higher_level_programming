@@ -4,28 +4,24 @@ Python script that takes in a letter and sends a POST request to http://0.0.0.0:
 with the letter as a parameter.
 """
 
+Usage: ./8-json_api.py <letter>
+  - The letter is sent as the value of the variable `q`.
+  - If no letter is provided, sends `q=""`.
+"""
 import sys
 import requests
 
+
 if __name__ == "__main__":
-    if len(sys.argv) == 1:
-        q = ""
-    else:
-        q = sys.argv[1]
+    letter = "" if len(sys.argv) == 1 else sys.argv[1]
+    payload = {"q": letter}
 
-    url = "http://0.0.0.0:5000/search_user"
-    payload = {'q': q}
-
+    r = requests.post("http://0.0.0.0:5000/search_user", data=payload)
     try:
-        response = requests.post(url, data=payload)
-        json_data = response.json()
-
-        if json_data:
-            print("[{}] {}".format(json_data.get('id'), json_data.get('name')))
-        else:
+        response = r.json()
+        if response == {}:
             print("No result")
-
+        else:
+            print("[{}] {}".format(response.get("id"), response.get("name")))
     except ValueError:
         print("Not a valid JSON")
-    except requests.RequestException as e:
-        print("Error: {}".format(e))
