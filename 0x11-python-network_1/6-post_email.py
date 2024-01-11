@@ -13,13 +13,11 @@ if __name__ == "__main__":
         print("Usage: {} <URL> <email>".format(sys.argv[0]))
         sys.exit(1)
 
-    url = sys.argv[1]
-    email = sys.argv[2]
-
+    url, email = sys.argv[1], sys.argv[2]
     payload = {'email': email}
-    
+
     try:
         response = requests.post(url, data=payload)
         print(response.text)
     except requests.RequestException as e:
-        print("Error: {}".format(e))
+        print(f"Error: {e}")
