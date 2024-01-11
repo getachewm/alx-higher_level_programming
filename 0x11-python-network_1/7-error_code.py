@@ -20,5 +20,4 @@ if __name__ == "__main__":
         response.raise_for_status()
         print(response.text)
     except requests.RequestException as e:
-        status_code = getattr(e.response, 'status_code', None)
-        print(f"Error code: {status_code}" if status_code else f"Error: {e}")
+        print(f"Error code: {e.response.status_code}" if e.response else f"Error: {e}")
