@@ -1,11 +1,12 @@
 #!/usr/bin/python3
-"""fetches https://intranet.hbtn.io/status"""
-from urllib import request
+"""Fetches https://intranet.hbtn.io/status"""
+from urllib.request import urlopen
 
 if __name__ == "__main__":
-    with request.urlopen("https://intranet.hbtn.io/status") as response:
-        response = response.read()
+    url = "https://intranet.hbtn.io/status"
+    with urlopen(url) as response:
+        response_content = response.read()
         print("Body response:")
-        print("\t- type: {}".format(type(response)))
-        print("\t- content: {}".format(response))
-        print("\t- utf8 content: {}".format(response.decode(encoding='utf-8')))
+        print(f"\t- type: {type(response_content)}")
+        print(f"\t- content: {response_content}")
+        print(f"\t- utf8 content: {response_content.decode('utf-8')}")
